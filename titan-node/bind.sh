@@ -1,6 +1,9 @@
 #!/bin/bash
 
-hash=30BB0E47-F46A-4577-BA4E-B59738945523
+hash=$1
+if [ -z "$hash" ]; then
+  hash="30BB0E47-F46A-4577-BA4E-B59738945523"
+fi
 
 container_ids=$(docker ps --format '{{.Names}}' | grep titan-node)
 
