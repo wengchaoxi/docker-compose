@@ -1,0 +1,11 @@
+services:
+{% for i in range(num) %}
+  titan-node-{{i}}:
+    # privileged: true
+    container_name: titan-node-{{i}}
+    image: nezha123/titan-edge:latest
+    volumes:
+      - ./data/{{i}}:/root/.titanedge
+    environment:
+      - TZ=Asia/Shanghai
+{% endfor %}
