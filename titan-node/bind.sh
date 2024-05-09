@@ -1,8 +1,16 @@
 #!/bin/bash
 
+if [ "$EUID" -ne 0 ]; then
+    echo "Please run as root, use: sudo ./bind.sh"
+    exit 1
+fi
+
+sysctl -w net.core.rmem_max=2500000
+sysctl -w net.core.wmem_max=2500000
+
 hash=$1
 if [ -z "$hash" ]; then
-  hash="30BB0E47-F46A-4577-BA4E-B59738945523"
+    hash="30BB0E47-F46A-4577-BA4E-B59738945523"
 fi
 
 container_ids=$(docker ps --format '{{.Names}}' | grep titan-node)
@@ -20,3 +28,5 @@ do
         echo "Skipping container $id"
     fi
 done
+
+echo "Done"

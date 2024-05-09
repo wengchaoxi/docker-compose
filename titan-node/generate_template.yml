@@ -8,4 +8,5 @@ services:
       - ./data/{{i}}:/root/.titanedge
     environment:
       - TZ=Asia/Shanghai
+    restart: always
 {% endfor %}
