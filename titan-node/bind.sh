@@ -10,7 +10,7 @@ sysctl -w net.core.wmem_max=2500000
 
 hash=$1
 if [ -z "$hash" ]; then
-    hash="30BB0E47-F46A-4577-BA4E-B59738945523"
+    hash="8D47E8B6-AC25-4472-BB81-40ADB9AF41F6"
 fi
 
 container_ids=$(docker ps --format '{{.Names}}' | grep titan-node)
@@ -22,7 +22,7 @@ for id in $container_ids
 do
     if [ ! -f "$flags_path/$id" ]; then
         echo "Container: $id"
-        docker exec -it $id titan-edge bind --hash=$hash https://api-test1.container1.titannet.io/api/v2/device/binding
+        docker exec $id titan-edge bind --hash=$hash https://api-test1.container1.titannet.io/api/v2/device/binding
         touch "$flags_path/$id"
     else
         echo "Skipping container $id"

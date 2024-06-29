@@ -17,3 +17,9 @@ sudo docker compose up -d
 ```
 sudo ./bind.sh <your-id>
 ```
+
+设置存储大小
+
+```
+sudo ./storage.sh <storage-size>
+```
